@@ -7,7 +7,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import telran.ashkelon2020.customer.model.Account;
 import telran.ashkelon2020.customer.model.Address;
 
 @AllArgsConstructor
@@ -21,6 +20,6 @@ public class CustomerDto {
 	String mobilePhone;
 	String email;
 	Address address;
-	Set<Account> accounts;
+	Set<AccountDto> accounts;
 	
 }

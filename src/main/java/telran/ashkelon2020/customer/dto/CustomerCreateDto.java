@@ -12,11 +12,12 @@ import telran.ashkelon2020.customer.model.Address;
 @NoArgsConstructor
 @Getter
 @Setter
-public class CustomerDeleteDto {
+public class CustomerCreateDto {
 	Integer id;
 	String name;
 	LocalDate birthDate;
 	String mobilePhone;
 	String email;
 	Address address;
+	
 }

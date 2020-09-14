@@ -7,9 +7,6 @@ import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -23,7 +20,6 @@ import lombok.Setter;
 @Setter
 @EqualsAndHashCode(of = {"id"})
 @Entity
-@Table(name = "customers")
 public class Customer implements Serializable{
 	/**
 	 * 
@@ -36,16 +32,7 @@ public class Customer implements Serializable{
 	String mobilePhone;
 	String email;
 	Address address;
-	@OneToMany
-	@JsonIgnore
-	Set<Account> accounts;
-	
-	public boolean addAccount(Account account) {
-		return accounts.add(account);
-	}
-	
-	public boolean removeAccount(Account account) {
-		return accounts.remove(account);
-	}
+	@OneToMany(mappedBy = "customer") // (PARENT)
+	Set<Account> accounts; //= new HashSet<>(); use 'new' only when we have method 'addAccount'
 	
 }

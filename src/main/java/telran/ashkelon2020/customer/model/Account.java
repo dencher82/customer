@@ -6,7 +6,7 @@ import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.ManyToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -20,7 +20,6 @@ import lombok.Setter;
 @Setter
 @EqualsAndHashCode(of = {"login"})
 @Entity
-@Table(name = "accounts")
 public class Account implements Serializable{
 	/**
 	 * 
@@ -28,13 +27,16 @@ public class Account implements Serializable{
 	private static final long serialVersionUID = -6779120156297153483L;
 	@Id
 	String login;
-	String password;
-	@ManyToMany
+	String description;
+	@ManyToMany(mappedBy = "accounts") // (PARENT)
 	Set<Subscriber> subscribers;
+	@ManyToOne // (CHILD)
+	Customer customer;
 	
-	public Account(String login, String password) {
+	public Account(String login, String description, Customer customer) {
 		this.login = login;
-		this.password = password;
+		this.description = description;
+		this.customer = customer;
 	}
 	
 }
